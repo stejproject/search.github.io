@@ -1,221 +1,210 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SearchStej</title>
     <meta name="robots" content="follow, index"/>
     <meta name="description" content="StejProject Search Engine"/>
-    <link
-      rel="shortcut icon"
-      href="https://stejproject.github.io/favicon-128.ico"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stejproject.github.io/sys/css/bckgr-grad-Ani.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      crossorigin="anonymous"
-    />
+    <link rel="shortcut icon" href="https://stejproject.github.io/favicon-128.ico" />
+    <link rel="stylesheet" href="https://stejproject.github.io/sys/css/bckgr-grad-Ani.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
       integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
       crossorigin="anonymous"></script>
+    <style>
+      /* Google Translate */
+      #google_translate_element { min-height: 32px; margin-top: 8px; }
+      .goog-te-gadget { font-size: .8rem !important; }
+      body { top: 0 !important; }
+      .skiptranslate iframe.goog-te-banner-frame { display: none !important; }
+
+      /* Video player (muncul saat hasil diklik) */
+      #videoModal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.8); padding: 16px; }
+      #videoModal.open { display: flex; }
+      #videoBox { width: 100%; max-width: 900px; }
+      #videoTitle { color: #fff; font-size: 1rem; margin-bottom: 8px; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+      #videoClose { background: none; border: 0; color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+      #videoFrameWrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; border-radius: 8px; overflow: hidden; }
+      #videoFrameWrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+      #videoMissing { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; padding: 16px; gap: 12px; }
+      #videoMissing a { color: #fff; border: 1px solid #fff; border-radius: 999px; padding: 6px 16px; text-decoration: none; }
+      .dropdown-content a .vid-tag { font-size: .7rem; opacity: .7; margin-left: 6px; }
+    </style>
   </head>
   <body>
     <section class="d-grid text-center">
       <div aria-checked="false" class="font-bold">
-        <h1
-          class="font-bold pt-3"
-          style="cursor: pointer;"
-          title="from StejProject"
-        >
-          SearchStej
-        </h1>
+        <h1 class="font-bold pt-3" style="cursor: pointer;" title="from StejProject">SearchStej</h1>
         <button class="dico-mode" onclick="darkFunction()" title="Focus-Reader">
           <i class="bi bi-book"></i>
         </button>
         <h3 class="logo-se">Search Engine</h3>
+        <div id="google_translate_element"></div>
       </div>
       <div class="screen">
-        <input
-          type="text"
-          placeholder="Search.."
-          id="myInput"
-          onkeyup="filterFunction()"
-          autocomplete="off"
-        />
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()" autocomplete="off" />
         <div id="myDropdown" class="dropdown-content">
           <!--............................................................-->
-          <a
-            onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdIiUX81dbt01I9SOAQ3vhbnpXSq8CzsV0O22sB__DU4CAnzg/viewform')"
-            ><h5>Private-Contact-SearchStej</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('list/about.txt')"
-            ><h5>About-SearchStej</h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://disqus.com/embed/comments/?base=default&f=https-stejproject-github-io&t_u=https%3A%2F%2Fstejproject.github.io%2F&t_d=Stej%20Project%20(Alpha%20v0.0.3)&t_t=Stej%20Project%20(Alpha%20v0.0.3)&s_o=default#version=cfefa856cbcd7efb87102e7242c9a829')"
-            ><h5>Public_Message-SearchStej_StejProject</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('list/komputer-startup-welcome/index.html')"
-            ><h5>Absen-Anggota_Sample</h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://stejproject.github.io/search.github.io/list/link-post.html')"
-            ><h5>Link_list-StejProject</h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://stejproject.github.io/search.github.io/list/youtube-post.html')"
-            ><h5>StejVideo</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://www.youtube.com/')"
-            ><h5>Youtube | Google</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://getbootstrap.com/')"
-            ><h5>Bootstrap</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://stejproject.github.io/')"
-            ><h5>Portfolio-StejProject</h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://stejproject.github.io/search.github.io/list/post.html')"
-            ><h5>Blogs</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://mail.google.com/')"
-            ><h5>https://mail.google.com | Mail Google</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://developer.mozilla.org/en-US/')"
-            ><h5>https://developer.mozilla.org/en-US/ | MDN Web Docs</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://www.startpage.com/')"
-            ><h5>https://www.startpage.com/ | Startpage Search Engine</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://pyscript.net/examples/')"
-            ><h5>
-              https://pyscript.net/examples/ | Py-Script Examples List Projects
-            </h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://engineering.anaconda.com/2022/04/welcome-pyscript.html')"
-            ><h5>
-              https://engineering.anaconda.com/2022/04/welcome-pyscript.html |
-              Py-Script Blogs
-            </h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://github.com/public-apis/public-apis')"
-            ><h5>
-              https://github.com/public-apis/public-apis | Github Public APIs
-            </h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://github.com/')"
-            ><h5>https://github.com | Github</h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://www.youtube.com/watch?v=XjhJU04rjtY')"
-            ><h5>
-              https://www.youtube.com/watch?v=XjhJU04rjtY | Youtube, Tangan
-              Belang Ngobrol Yuk: MENGUAK RAHASIA AKINATOR!
-            </h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://colorhunt.co/')"
-            ><h5>https://colorhunt.co/ | colorhunt.co</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://ide.onelang.io/')"
-            ><h5>https://ide.onelang.io/ | ide.onelang.io</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://andylukito.itch.io/')"
-            ><h5>https://andylukito.itch.io/ | andylukito.itch.io</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://paasfinder.org/vendors')"
-            ><h5>https://paasfinder.org/vendors | paasfinder.org/vendors</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://roadmap.sh/')"
-            ><h5>https://roadmap.sh/ | roadmap.sh</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://iplogger.org/')"
-            ><h5>https://iplogger.org/ | iplogger.org</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('http://www.spylink.net/')"
-            ><h5>http://www.spylink.net/ | www.spylink.net</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://everipedia.org/')"
-            ><h5>https://everipedia.org/ | everipedia.org</h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://www.youtube.com/results?search_query=search+engine+and+web+crawler')"
-            ><h5>
-              https://www.youtube.com/results?search_query=search+engine+and+web+crawler
-              | youtube.com
-            </h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://www.youtube.com/watch?v=UbsLysuDivY')"
-            ><h5>
-              https://www.youtube.com/watch?v=UbsLysuDivY | youtube.com
-            </h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://www.hackerearth.com/practice/notes/praveen97uma/crawling-a-website-that-loads-content-using-javascript-with-selenium-webdriver-in-python/')"
-            ><h5>
-              crawling a website that loads content using javascript with
-              selenium web driver in python | hackerearth.com
-            </h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://github.com/ahfarmer/emoji-search')"
-            ><h5>github.com/ahfarmer/emoji-search | github.com</h5></a
-          >
-          <!--............................................................-->
-          <a onclick="window.open('https://opensource.fb.com/')"
-            ><h5>https://opensource.fb.com/ | opensource.fb.com</h5></a
-          >
-          <!--............................................................-->
-          <a
-            onclick="window.open('https://transparencyreport.google.com/safe-browsing/search')"
-            ><h5>
-              https://transparencyreport.google.com/safe-browsing/search | Cek
-              Situs Berhttps
-            </h5></a
-          >
-          <!--............................................................-->
+          <a onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSdIiUX81dbt01I9SOAQ3vhbnpXSq8CzsV0O22sB__DU4CAnzg/viewform')"><h5>Private-Contact-SearchStej</h5></a>
+          <a onclick="window.open('list/about.txt')"><h5>About-SearchStej</h5></a>
+          <a onclick="window.open('https://disqus.com/embed/comments/?base=default&f=https-stejproject-github-io&t_u=https%3A%2F%2Fstejproject.github.io%2F&t_d=Stej%20Project%20(Alpha%20v0.0.3)&t_t=Stej%20Project%20(Alpha%20v0.0.3)&s_o=default#version=cfefa856cbcd7efb87102e7242c9a829')"><h5>Public_Message-SearchStej_StejProject</h5></a>
+          <a onclick="window.open('list/komputer-startup-welcome/index.html')"><h5>Absen-Anggota_Sample</h5></a>
+          <a onclick="window.open('https://stejproject.github.io/search.github.io/list/link-post.html')"><h5>Link_list-StejProject</h5></a>
+          <!-- StejVideo: sekarang menampilkan daftar video di halaman ini -->
+          <a onclick="showOnlyVideos()"><h5>StejVideo</h5></a>
+          <a onclick="window.open('https://www.youtube.com/')"><h5>Youtube | Google</h5></a>
+          <a onclick="window.open('https://getbootstrap.com/')"><h5>Bootstrap</h5></a>
+          <a onclick="window.open('https://stejproject.github.io/')"><h5>Portfolio-StejProject</h5></a>
+          <a onclick="window.open('https://stejproject.github.io/search.github.io/list/post.html')"><h5>Blogs</h5></a>
+          <a onclick="window.open('https://mail.google.com/')"><h5>https://mail.google.com | Mail Google</h5></a>
+          <a onclick="window.open('https://developer.mozilla.org/en-US/')"><h5>https://developer.mozilla.org/en-US/ | MDN Web Docs</h5></a>
+          <a onclick="window.open('https://www.startpage.com/')"><h5>https://www.startpage.com/ | Startpage Search Engine</h5></a>
+          <a onclick="window.open('https://pyscript.net/examples/')"><h5>https://pyscript.net/examples/ | Py-Script Examples List Projects</h5></a>
+          <a onclick="window.open('https://engineering.anaconda.com/2022/04/welcome-pyscript.html')"><h5>https://engineering.anaconda.com/2022/04/welcome-pyscript.html | Py-Script Blogs</h5></a>
+          <a onclick="window.open('https://github.com/public-apis/public-apis')"><h5>https://github.com/public-apis/public-apis | Github Public APIs</h5></a>
+          <a onclick="window.open('https://github.com/')"><h5>https://github.com | Github</h5></a>
+          <!-- Video langsung diputar di halaman ini -->
+          <a class="vid" onclick="openVideo('XjhJU04rjtY','Tangan Belang Ngobrol Yuk: MENGUAK RAHASIA AKINATOR!')"><h5>https://www.youtube.com/watch?v=XjhJU04rjtY | Youtube, Tangan Belang Ngobrol Yuk: MENGUAK RAHASIA AKINATOR!</h5></a>
+          <a onclick="window.open('https://colorhunt.co/')"><h5>https://colorhunt.co/ | colorhunt.co</h5></a>
+          <a onclick="window.open('https://ide.onelang.io/')"><h5>https://ide.onelang.io/ | ide.onelang.io</h5></a>
+          <a onclick="window.open('https://andylukito.itch.io/')"><h5>https://andylukito.itch.io/ | andylukito.itch.io</h5></a>
+          <a onclick="window.open('https://paasfinder.org/vendors')"><h5>https://paasfinder.org/vendors | paasfinder.org/vendors</h5></a>
+          <a onclick="window.open('https://roadmap.sh/')"><h5>https://roadmap.sh/ | roadmap.sh</h5></a>
+          <a onclick="window.open('https://iplogger.org/')"><h5>https://iplogger.org/ | iplogger.org</h5></a>
+          <a onclick="window.open('http://www.spylink.net/')"><h5>http://www.spylink.net/ | www.spylink.net</h5></a>
+          <a onclick="window.open('https://everipedia.org/')"><h5>https://everipedia.org/ | everipedia.org</h5></a>
+          <a onclick="window.open('https://www.youtube.com/results?search_query=search+engine+and+web+crawler')"><h5>https://www.youtube.com/results?search_query=search+engine+and+web+crawler | youtube.com</h5></a>
+          <a class="vid" onclick="openVideo('UbsLysuDivY','youtube.com')"><h5>https://www.youtube.com/watch?v=UbsLysuDivY | youtube.com</h5></a>
+          <a onclick="window.open('https://www.hackerearth.com/practice/notes/praveen97uma/crawling-a-website-that-loads-content-using-javascript-with-selenium-webdriver-in-python/')"><h5>crawling a website that loads content using javascript with selenium web driver in python | hackerearth.com</h5></a>
+          <a onclick="window.open('https://github.com/ahfarmer/emoji-search')"><h5>github.com/ahfarmer/emoji-search | github.com</h5></a>
+          <a onclick="window.open('https://opensource.fb.com/')"><h5>https://opensource.fb.com/ | opensource.fb.com</h5></a>
+          <a onclick="window.open('https://transparencyreport.google.com/safe-browsing/search')"><h5>https://transparencyreport.google.com/safe-browsing/search | Cek Situs Berhttps</h5></a>
+          <!-- Daftar video dari youtube-post.html dibuat otomatis oleh script di bawah -->
         </div>
       </div>
-      <script src="search.js" async></script>
     </section>
+
+    <!-- Pemutar video -->
+    <div id="videoModal" role="dialog" aria-modal="true" aria-label="Video">
+      <div id="videoBox">
+        <div id="videoTitle"><span id="videoName"></span><button id="videoClose" title="Tutup (Esc)">&times;</button></div>
+        <div id="videoFrameWrap">
+          <div id="videoMissing"><span>ID video belum diisi untuk judul ini.</span><a id="videoSearchLink" target="_blank" rel="noopener">Cari di YouTube</a></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ===== Daftar video (dari youtube-post.html) =====
+         Isi "id" dengan ID video YouTube (bagian setelah v= di URL).
+         Kalau id kosong, tombol "Cari di YouTube" muncul sebagai cadangan. */
+      const VIDEOS = [
+        { id: "", title: "Belajar Website BOOTSTRAP 5", by: "Web Programming UNPAS" },
+        { id: "", title: "MASA DEPAN PROGRAMMER INDONESIA", by: "Dea Afrizal" },
+        { id: "", title: "Realita Bekerja di Startup Menurut Ex-Engineer Bukalapak", by: "Cordova" },
+        { id: "", title: "Realita Hackathon Menurut Ex-Engineer Bukalapak", by: "Cordova" },
+        { id: "", title: "Tips Memilih Jurusan Kuliah dengan Tepat", by: "Satu Persen" },
+        { id: "", title: "React JS", by: "Dea Afrizal" },
+        { id: "", title: "Beda DIV dan SECTION di HTML [CariTauCuy]", by: "Dea Afrizal" },
+        { id: "", title: "Stupid Error in soldering with tips", by: "Tech Ideas" },
+        { id: "", title: "James Webb Spaces Telescope", by: "TelescopeFeed | Hubble Space Telescope" },
+        { id: "", title: "Tips Belajar Programing ala Odi aka. Mathdroid", by: "Web Programming UNPAS" },
+        { id: "", title: "Tips Belajar Programming Autodidak", by: "Onno Center" },
+        { id: "", title: "Bagaimana Menguasai Banyak Bahasa Pemrograman", by: "Programmer Zaman Now" },
+        { id: "", title: "Untuk Pemula Belajar Pemrograman Apa?", by: "Programmer Zaman Now" },
+        { id: "", title: "Cara Membuat lilin seumur hidup", by: "Youbeagger" },
+        { id: "", title: "Dari Belajar HTML CSS Bisa Dapet Uang Freelance", by: "Dea Afrizal" },
+        { id: "", title: "Cara Agar Badan Tidak Pegal-Pegal saat bekerja/belajar/ngebenerin bug supaya tidak ada bug", by: "DRV CHANNEL" }
+      ];
+
+      const dropdown = document.getElementById("myDropdown");
+      VIDEOS.forEach(v => {
+        const a = document.createElement("a");
+        a.className = "vid";
+        a.addEventListener("click", () => openVideo(v.id, v.title, v.by));
+        const h = document.createElement("h5");
+        h.textContent = v.title + " : " + v.by;
+        const tag = document.createElement("span");
+        tag.className = "vid-tag";
+        tag.innerHTML = '<i class="bi bi-play-circle"></i>';
+        h.appendChild(tag);
+        a.appendChild(h);
+        dropdown.appendChild(a);
+      });
+
+      /* ===== Pemutar ===== */
+      const modal = document.getElementById("videoModal");
+      const wrap = document.getElementById("videoFrameWrap");
+      const missing = document.getElementById("videoMissing");
+
+      function openVideo(id, title, by) {
+        document.getElementById("videoName").textContent = title || "";
+        wrap.querySelectorAll("iframe").forEach(f => f.remove());
+        if (id) {
+          missing.style.display = "none";
+          const f = document.createElement("iframe");
+          f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) + "?autoplay=1&rel=0";
+          f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+          f.allowFullscreen = true;
+          f.title = title || "Video";
+          wrap.appendChild(f);
+        } else {
+          missing.style.display = "flex";
+          document.getElementById("videoSearchLink").href =
+            "https://www.youtube.com/results?search_query=" + encodeURIComponent((title || "") + " " + (by || ""));
+        }
+        modal.classList.add("open");
+      }
+      function closeVideo() {
+        modal.classList.remove("open");
+        wrap.querySelectorAll("iframe").forEach(f => f.remove()); // hentikan video
+      }
+      document.getElementById("videoClose").addEventListener("click", closeVideo);
+      modal.addEventListener("click", e => { if (e.target === modal) closeVideo(); });
+      document.addEventListener("keydown", e => { if (e.key === "Escape") closeVideo(); });
+
+      /* ===== Pencarian ===== */
+      /* Dari search.js asli */
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      function filterFunction() {
+        var input, filter, div, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("h5");
+        for (i = 0; i < a.length; i++) {
+          if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+          } else {
+            a[i].style.display = "none";
+          }
+        }
+      }
+
+      /* Tambahan: StejVideo menampilkan hanya video */
+      function showOnlyVideos() {
+        document.getElementById("myInput").value = "";
+        var hs = dropdown.getElementsByTagName("h5");
+        for (var i = 0; i < hs.length; i++) {
+          hs[i].style.display = hs[i].parentNode.classList.contains("vid") ? "" : "none";
+        }
+      }
+
+      /* ===== Google Translate ===== */
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: "id",
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, "google_translate_element");
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://stejproject.github.io/sys/js/drk.js" defer></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
